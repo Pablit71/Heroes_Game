@@ -11,7 +11,7 @@ class BaseUnit(ABC):
     Базовый класс юнита
     """
 
-    def __init__(self, name: str, unit_class: UnitClass):
+    def __init__(self, name: str, unit_class: UnitClass, weapon: Weapon, armor: Armor):
         """
         При инициализации класса Unit используем свойства класса UnitClass
         """
@@ -21,7 +21,7 @@ class BaseUnit(ABC):
         self.stamina = unit_class.max_stamina
         self.weapon = Weapon
         self.armor = Armor
-        self._is_skill_used = False
+        self._is_skill_used: bool = False
 
     @property
     def health_points(self):
@@ -92,10 +92,6 @@ class PlayerUnit(BaseUnit):
 
 
 class EnemyUnit(BaseUnit):
-
-    def __init__(self, name: str, unit_class: UnitClass):
-        super().__init__(name, unit_class)
-        self.skill_used = None
 
     def hit(self, target: BaseUnit) -> str:
         if not self.skill_used:

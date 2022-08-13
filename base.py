@@ -14,12 +14,12 @@ class BaseSingleton(type):
 
 
 class Arena(metaclass=BaseSingleton):
-    STAMINA_PER_ROUND = 1
     player: BaseUnit
     enemy: BaseUnit
+    STAMINA_PER_ROUND = 1
     game: bool = False
 
-    def start_game(self, player: BaseUnit, enemy: BaseUnit):
+    def start_game(self, player: BaseUnit, enemy: BaseUnit) -> None:
         self.player = player
         self.enemy = enemy
         self.game = True

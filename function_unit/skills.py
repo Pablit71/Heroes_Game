@@ -10,11 +10,11 @@ if TYPE_CHECKING:
 
 @dataclass
 class Skill(ABC):
+    user: BaseUnit
+    target: BaseUnit
     name: str = ""
     damage: float = 0
     stamina_required: float = 0
-    user: BaseUnit
-    target: BaseUnit
 
     # @property
     # @abstractmethod
