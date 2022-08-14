@@ -8,10 +8,9 @@ if TYPE_CHECKING:
     from function_unit.unit import BaseUnit
 
 
-@dataclass
 class Skill(ABC):
-    user: BaseUnit
-    target: BaseUnit
+    user: None
+    target: None
     name: str = ""
     damage: float = 0
     stamina_required: float = 0
