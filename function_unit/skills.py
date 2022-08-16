@@ -9,8 +9,8 @@ if TYPE_CHECKING:
 
 
 class Skill(ABC):
-    user: None
-    target: None
+    user: BaseUnit
+    target: BaseUnit
     name: str = ""
     damage: float = 0
     stamina_required: float = 0
