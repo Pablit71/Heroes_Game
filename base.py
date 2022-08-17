@@ -18,6 +18,7 @@ class Arena(metaclass=BaseSingleton):
     enemy: BaseUnit
     STAMINA_PER_ROUND = 1
     game: bool = False
+    battle_result: str = ""
 
     def start_game(self, player: BaseUnit, enemy: BaseUnit) -> None:
         self.player = player
@@ -42,7 +43,7 @@ class Arena(metaclass=BaseSingleton):
         return False
 
     def _stamina_regeneration(self):
-        
+
         player_stamina_recovery = self.STAMINA_PER_ROUND * self.player.unit_class.stamina
         enemy_stamina_recovery = self.STAMINA_PER_ROUND * self.enemy.unit_class.stamina
         self.player.stamina_points_ += round(player_stamina_recovery, 1)

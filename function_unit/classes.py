@@ -1,6 +1,6 @@
 from abc import ABC
 
-from marshmallow_dataclass import dataclass
+from dataclasses import dataclass
 
 from function_unit.skills import Skill, FuryPunch, HardShot
 

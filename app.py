@@ -9,7 +9,7 @@ from function_unit.unit import BaseUnit, PlayerUnit, EnemyUnit
 
 app = Flask(__name__)
 BASEDIR = os.path.dirname(os.path.realpath(__file__))
-EQUIPMENT_PATH = os.path.join(os.path.dirname(BASEDIR), "data/equipment.json")
+EQUIPMENT_PATH = os.path.join(os.path.dirname(BASEDIR), "coursework_5/data/equipment.json")
 equipment = equipment.Equipment(EQUIPMENT_PATH)
 
 
@@ -107,7 +107,7 @@ def choose_enemy():
         enemy_unit = EnemyUnit(name=user_name, unit_class=unit_class, weapon=weapon, armor=armor)
         heroes['enemy'] = enemy_unit
 
-        return redirect(url_for('fight', _external=True))
+        return redirect(url_for('start_fight'))
 
 
 if __name__ == "__main__":

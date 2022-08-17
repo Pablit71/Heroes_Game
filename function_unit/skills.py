@@ -2,15 +2,15 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
-from marshmallow_dataclass import dataclass
+
 
 if TYPE_CHECKING:
     from function_unit.unit import BaseUnit
 
 
 class Skill(ABC):
-    user: None
-    target: None
+    user: BaseUnit
+    target: BaseUnit
     name: str = ""
     damage: float = 0
     stamina_required: float = 0

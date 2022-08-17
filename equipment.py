@@ -7,6 +7,7 @@ import json
 
 @dataclass
 class Armor:
+    id: int
     name: str
     defence: float
     stamina_per_turn: float
@@ -14,6 +15,7 @@ class Armor:
 
 @dataclass
 class Weapon:
+    id: int
     name: str
     min_damage: float
     max_damage: float

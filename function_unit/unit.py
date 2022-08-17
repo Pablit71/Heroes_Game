@@ -42,12 +42,12 @@ class BaseUnit(ABC):
         return f"{self.name} экипирован броней {self.weapon.name}"
 
     def hit(self, target: BaseUnit) -> str:
-        if self.stamina >= self.weapon.stamina_per_hit:
+        if self.stamina >= self.weapon.stamina:
 
             damage_inflicted = self._count_damage(target)
             target.get_damage(damage_inflicted)
 
-            self.stamina -= self.weapon.stamina_per_hit
+            self.stamina -= self.weapon.stamina
             target.stamina -= target.armor.stamina_per_turn
 
             if target.stamina < 0:
