@@ -12,16 +12,12 @@ BASEDIR = os.path.dirname(os.path.realpath(__file__))
 EQUIPMENT_PATH = os.path.join(os.path.dirname(BASEDIR), "coursework_5/data/equipment.json")
 equipment = equipment.Equipment(EQUIPMENT_PATH)
 
-
-
 heroes = {
     "player": BaseUnit,
     "enemy": BaseUnit
 }
 
 arena = Arena()
-
-
 
 
 @app.route("/")
