@@ -2,15 +2,15 @@ import os
 
 from flask import Flask, render_template, request, redirect, url_for
 
-import equipment
 from base import Arena
+from config import BaseConfig
+from equipment import Equipment
 from function_unit.classes import unit_classes
 from function_unit.unit import BaseUnit, PlayerUnit, EnemyUnit
 
 app = Flask(__name__)
 BASEDIR = os.path.dirname(os.path.realpath(__file__))
-EQUIPMENT_PATH = os.path.join(os.path.dirname(BASEDIR), "coursework_5/data/equipment.json")
-equipment = equipment.Equipment(EQUIPMENT_PATH)
+equipment = Equipment(BaseConfig.EQUIPMENT_PATH)
 
 heroes = {
     "player": BaseUnit,
@@ -35,15 +35,15 @@ def start_fight():
 
 @app.route("/fight/hit")
 def hit():
-    if arena.game:
-        result = arena.player_hit()
+    if arena.game_on:
+        result = arena.player_attack()
         return render_template('fight.html', heroes=heroes, result=result)
     return render_template('fight.html', heroes=heroes, battle_result=arena.battle_result)
 
 
 @app.route("/fight/use-skill")
 def use_skill():
-    if arena.game:
+    if arena.game_on:
         result = arena.player_use_skill()
         return render_template('fight.html', heroes=heroes, result=result)
     return render_template('fight.html', heroes=heroes, battle_result=arena.battle_result)
@@ -51,7 +51,7 @@ def use_skill():
 
 @app.route("/fight/pass-turn")
 def pass_turn():
-    if arena.game:
+    if arena.game_on:
         result = arena.next_turn()
         return render_template('fight.html', heroes=heroes, result=result)
     return render_template('fight.html', heroes=heroes, battle_result=arena.battle_result)
@@ -66,10 +66,10 @@ def end_fight():
 def choose_hero():
     if request.method == 'GET':
         result = {
-            "header": 'Игрок',
+            "header": 'Выбор героя для игрока',
             "classes": unit_classes,
-            "weapons": equipment.get_weapons_names(),
-            "armors": equipment.get_armors_names()
+            "weapons": equipment.get_weapon_names(),
+            "armors": equipment.get_armor_names()
         }
         return render_template('hero_choosing.html', result=result)
     elif request.method == 'POST':
@@ -89,10 +89,10 @@ def choose_hero():
 def choose_enemy():
     if request.method == 'GET':
         result = {
-            "header": 'Враг',
+            "header": 'Выбор для ИИ',
             "classes": unit_classes,
-            "weapons": equipment.get_weapons_names(),
-            "armors": equipment.get_armors_names()
+            "weapons": equipment.get_weapon_names(),
+            "armors": equipment.get_armor_names()
         }
         return render_template('hero_choosing.html', result=result)
     if request.method == 'POST':
